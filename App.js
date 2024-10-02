@@ -1,11 +1,11 @@
-// SIDEBAR 
-const menuItems = document.querySelector('.menu-item');
+// SIDEBAR
+const menuItems = document.querySelectorAll('.menu-item');
 
 // MESSAGES
-const messagesNotification = document.querySelector('messages-notification');
-const messages = document.querySelector('.messages');
-const message = messages.querySelectorAll('message')
-const messageSearch = document.querySelector('message-search');
+const messagesNotification = document.querySelector('#messages-notification');
+const messages = document.querySelector('.middle');
+const message = messages.querySelectorAll('.feed');
+const messageSearch = document.querySelector('.message-search');
 
 // ----- SIDEBAR ------
 // remove active class from all menu items
@@ -20,12 +20,12 @@ menuItems.forEach(item => {
         changeActiveItem();
         item.classList.add('active');
         if(item.id != 'notifications') {
-            document.querySelector('notifications-popup').
+            document.querySelector('.notifications-popup').
             style.display = 'none';
         } else {
-            document.querySelector('notifications-popup').
+            document.querySelector('.notifications-popup').
             style.display = 'block';
-            document.querySelector('notifications .notification-count').
+            document.querySelector('#notifications .notification-count').
             style.display = 'none';
         }
     })
@@ -34,9 +34,9 @@ menuItems.forEach(item => {
 // ------ MESSAGES -----
 // searchs chats
 const searchMessage = () => {
-    const val = messageSearch.ariaValueMax.toLocaleLowerCase();
+    const val = messageSearch.value.toLowerCase();
     message.forEach(user => {
-        let name = user.querySelector('h5').textContent.toLocaleLowerCase();
+        let name = user.querySelector('h3').textContent.toLowerCase();
         if(name.indexOf(val) != -1) {
             user.style.display = 'flex';
         } else {
